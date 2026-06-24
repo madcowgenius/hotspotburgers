@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import hero from "@/assets/hero.asset.json";
+import logo from "@/assets/hotspot-logo.asset.json";
 import burger1 from "@/assets/burger1.asset.json";
 import stack from "@/assets/stack.asset.json";
 import kota1 from "@/assets/kota1.asset.json";
