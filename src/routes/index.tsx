@@ -90,47 +90,8 @@ function Index() {
       </section>
 
       {/* MENU */}
-      <section id="menu" className="bg-foreground text-background py-20">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
-            <div>
-              <div className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Our Menu</div>
-              <h2 className="font-display text-5xl md:text-6xl uppercase">Made to be devoured</h2>
-            </div>
-            <p className="max-w-sm text-background/70">Every order is built fresh — toasted buns, signature sauces, generous fillings. No shortcuts.</p>
-          </div>
+      <MenuSection />
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { img: burger1.url, name: "Signature Burger", desc: "Juicy patty, smoked bacon, two sauces, sesame bun.", price: "N$ 75" },
-              { img: stack.url, name: "Double Stack", desc: "Double beef, bacon, crispy chips & cheese sauce.", price: "N$ 110" },
-              { img: hero.url, name: "Garlic Bomb", desc: "Garlic-butter bun, patty, salsa & pink sauce drip.", price: "N$ 85" },
-              { img: kota1.url, name: "Hotspot Kota", desc: "Crusty roll loaded with russian, slaw, cheese & sauce.", price: "N$ 65" },
-              { img: sub1.url, name: "Loaded Sub", desc: "Long roll piled with meats, slaw & shredded cheese.", price: "N$ 95" },
-              { img: sub2.url, name: "Bacon & Egg Sub", desc: "Crispy bacon, fried egg, chips & double-sauce drizzle.", price: "N$ 90" },
-            ].map((item) => (
-              <article key={item.name} className="group bg-background text-foreground rounded-2xl overflow-hidden hover:-translate-y-1 transition shadow-lg">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={item.img} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-                </div>
-                <div className="p-5">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="font-display text-2xl uppercase">{item.name}</h3>
-                    <span className="font-display text-xl text-primary">{item.price}</span>
-                  </div>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-10 text-center">
-            <a href={`tel:${PHONE}`} className="inline-block bg-accent text-accent-foreground px-8 py-4 rounded-full font-semibold hover:scale-105 transition">
-              Call to order — {PHONE_DISPLAY}
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* CATERING */}
       <section id="catering" className="py-24">
