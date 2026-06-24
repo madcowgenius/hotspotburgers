@@ -1,29 +1,219 @@
 import { createFileRoute } from "@tanstack/react-router";
+import hero from "@/assets/hero.asset.json";
+import burger1 from "@/assets/burger1.asset.json";
+import stack from "@/assets/stack.asset.json";
+import kota1 from "@/assets/kota1.asset.json";
+import sub1 from "@/assets/sub1.asset.json";
+import sub2 from "@/assets/sub2.asset.json";
+import subs from "@/assets/subs.asset.json";
+import duo from "@/assets/duo.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Hotspot Takeaway & Catering — Windhoek West" },
+      { name: "description", content: "Loaded burgers, kotas, gourmet subs and full-service catering in Windhoek. Call +264 81 365 2649." },
+      { property: "og:title", content: "Hotspot Takeaway & Catering — Windhoek West" },
+      { property: "og:description", content: "Loaded burgers, kotas, gourmet subs and full-service catering in Windhoek." },
+      { property: "og:image", content: hero.url },
+      { name: "twitter:image", content: hero.url },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const PHONE = "+264813652649";
+const PHONE_DISPLAY = "+264 81 365 2649";
+const WHATSAPP = `https://wa.me/264813652649?text=${encodeURIComponent("Hi Hotspot! I'd like to place an order.")}`;
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen text-foreground">
+      {/* NAV */}
+      <header className="sticky top-0 z-50 backdrop-blur bg-background/80 border-b border-border">
+        <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
+          <a href="#top" className="flex items-center gap-2">
+            <span className="inline-block w-8 h-8 rounded-full bg-primary" />
+            <span className="font-display text-2xl tracking-wide">HOTSPOT</span>
+          </a>
+          <nav className="hidden md:flex gap-8 text-sm font-medium">
+            <a href="#menu" className="hover:text-primary transition">Menu</a>
+            <a href="#catering" className="hover:text-primary transition">Catering</a>
+            <a href="#about" className="hover:text-primary transition">About</a>
+            <a href="#visit" className="hover:text-primary transition">Visit</a>
+          </nav>
+          <a href={`tel:${PHONE}`} className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition">
+            <span>📞</span> Order Now
+          </a>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section id="top" className="relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-5 pt-12 pb-20 md:pt-20 md:pb-28 grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-accent/30 text-foreground border border-accent/60 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" /> Windhoek West · Open Today
+            </div>
+            <h1 className="font-display text-6xl md:text-8xl leading-[0.9] uppercase">
+              Loaded.<br />
+              <span className="text-primary">Saucy.</span><br />
+              Unforgettable.
+            </h1>
+            <p className="mt-6 text-lg text-muted-foreground max-w-md">
+              Hotspot serves the boldest burgers, kotas and gourmet subs in Windhoek — plus full-service catering for events that need to taste as good as they look.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:scale-[1.02] transition shadow-lg shadow-primary/30">
+                Order on WhatsApp
+              </a>
+              <a href="#catering" className="border-2 border-foreground px-6 py-3 rounded-full font-semibold hover:bg-foreground hover:text-background transition">
+                Book Catering
+              </a>
+            </div>
+            <div className="mt-10 flex gap-8 text-sm">
+              <div><div className="font-display text-3xl text-primary">100%</div><div className="text-muted-foreground">Fresh daily</div></div>
+              <div><div className="font-display text-3xl text-primary">7</div><div className="text-muted-foreground">Days a week</div></div>
+              <div><div className="font-display text-3xl text-primary">500+</div><div className="text-muted-foreground">Happy customers</div></div>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute -inset-6 bg-primary/20 rounded-[2.5rem] blur-3xl" />
+            <img src={hero.url} alt="Hotspot signature loaded burger" className="relative rounded-3xl shadow-2xl w-full object-cover aspect-square" />
+            <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl rotate-[-4deg]">
+              <div className="font-display text-2xl">★ ★ ★ ★ ★</div>
+              <div className="text-xs text-muted-foreground">"Best burger in Windhoek"</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MENU */}
+      <section id="menu" className="bg-foreground text-background py-20">
+        <div className="max-w-7xl mx-auto px-5">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+            <div>
+              <div className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Our Menu</div>
+              <h2 className="font-display text-5xl md:text-6xl uppercase">Made to be devoured</h2>
+            </div>
+            <p className="max-w-sm text-background/70">Every order is built fresh — toasted buns, signature sauces, generous fillings. No shortcuts.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { img: burger1.url, name: "Signature Burger", desc: "Juicy patty, smoked bacon, two sauces, sesame bun.", price: "N$ 75" },
+              { img: stack.url, name: "Double Stack", desc: "Double beef, bacon, crispy chips & cheese sauce.", price: "N$ 110" },
+              { img: hero.url, name: "Garlic Bomb", desc: "Garlic-butter bun, patty, salsa & pink sauce drip.", price: "N$ 85" },
+              { img: kota1.url, name: "Hotspot Kota", desc: "Crusty roll loaded with russian, slaw, cheese & sauce.", price: "N$ 65" },
+              { img: sub1.url, name: "Loaded Sub", desc: "Long roll piled with meats, slaw & shredded cheese.", price: "N$ 95" },
+              { img: sub2.url, name: "Bacon & Egg Sub", desc: "Crispy bacon, fried egg, chips & double-sauce drizzle.", price: "N$ 90" },
+            ].map((item) => (
+              <article key={item.name} className="group bg-background text-foreground rounded-2xl overflow-hidden hover:-translate-y-1 transition shadow-lg">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={item.img} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                </div>
+                <div className="p-5">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="font-display text-2xl uppercase">{item.name}</h3>
+                    <span className="font-display text-xl text-primary">{item.price}</span>
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <a href={`tel:${PHONE}`} className="inline-block bg-accent text-accent-foreground px-8 py-4 rounded-full font-semibold hover:scale-105 transition">
+              Call to order — {PHONE_DISPLAY}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CATERING */}
+      <section id="catering" className="py-24">
+        <div className="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-2 gap-4">
+            <img src={duo.url} alt="Burger pair" className="rounded-2xl aspect-square object-cover col-span-2" />
+            <img src={subs.url} alt="Sub platter" className="rounded-2xl aspect-square object-cover" />
+            <img src={kota1.url} alt="Kota" className="rounded-2xl aspect-square object-cover" />
+          </div>
+          <div>
+            <div className="text-primary font-semibold uppercase tracking-widest text-sm mb-2">Catering</div>
+            <h2 className="font-display text-5xl md:text-6xl uppercase leading-none">Feed the whole crew.</h2>
+            <p className="mt-5 text-lg text-muted-foreground">From office lunches to weddings and birthdays — we cater events of every size across Windhoek with platters that disappear fast.</p>
+            <ul className="mt-8 space-y-3">
+              {[
+                "Corporate lunches & meetings",
+                "Weddings, birthdays & private parties",
+                "Conferences, school events & functions",
+                "Custom menus & dietary options",
+              ].map((p) => (
+                <li key={p} className="flex items-start gap-3">
+                  <span className="mt-1 w-5 h-5 rounded-full bg-primary text-primary-foreground inline-flex items-center justify-center text-xs font-bold">✓</span>
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-8 inline-flex bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:opacity-90 transition">
+              Request a Catering Quote
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ABOUT */}
+      <section id="about" className="bg-accent/20 py-24 border-y border-border">
+        <div className="max-w-4xl mx-auto px-5 text-center">
+          <div className="text-primary font-semibold uppercase tracking-widest text-sm mb-2">About Hotspot</div>
+          <h2 className="font-display text-5xl md:text-6xl uppercase">Windhoek's flavour HQ</h2>
+          <p className="mt-6 text-lg text-muted-foreground">
+            Born in Windhoek West and built around big, honest flavour. We grill, stack, and load every order to order — because takeaway should never taste like an afterthought. Walk in, call ahead, or let us cater your next big moment.
+          </p>
+        </div>
+      </section>
+
+      {/* VISIT */}
+      <section id="visit" className="py-24">
+        <div className="max-w-7xl mx-auto px-5 grid md:grid-cols-3 gap-6">
+          {[
+            { title: "Find Us", body: "Hadyn Street\nWindhoek West\nNamibia", icon: "📍" },
+            { title: "Call / WhatsApp", body: PHONE_DISPLAY, icon: "📞", href: `tel:${PHONE}` },
+            { title: "Hours", body: "Mon – Sun\n10:00 – 22:00", icon: "🕒" },
+          ].map((c) => (
+            <div key={c.title} className="bg-card border border-border rounded-2xl p-8 hover:border-primary transition">
+              <div className="text-4xl mb-4">{c.icon}</div>
+              <h3 className="font-display text-2xl uppercase mb-3">{c.title}</h3>
+              {c.href ? (
+                <a href={c.href} className="text-lg font-medium whitespace-pre-line hover:text-primary">{c.body}</a>
+              ) : (
+                <p className="text-lg whitespace-pre-line text-muted-foreground">{c.body}</p>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-primary text-primary-foreground py-20">
+        <div className="max-w-4xl mx-auto px-5 text-center">
+          <h2 className="font-display text-5xl md:text-7xl uppercase leading-none">Hungry yet?</h2>
+          <p className="mt-4 text-primary-foreground/80 text-lg">Order now — fresh, fast, and loaded just the way you like it.</p>
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
+            <a href={`tel:${PHONE}`} className="bg-background text-foreground px-6 py-3 rounded-full font-semibold hover:scale-105 transition">📞 {PHONE_DISPLAY}</a>
+            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="bg-foreground text-background px-6 py-3 rounded-full font-semibold hover:scale-105 transition">WhatsApp Us</a>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-foreground text-background/70 py-8">
+        <div className="max-w-7xl mx-auto px-5 flex flex-wrap justify-between gap-4 text-sm">
+          <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
+          <div>Hadyn Street, Windhoek West · {PHONE_DISPLAY}</div>
+        </div>
+      </footer>
     </div>
   );
 }
