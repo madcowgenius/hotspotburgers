@@ -35,8 +35,7 @@ function Index() {
       <header className="sticky top-0 z-50 backdrop-blur bg-background/80 border-b border-border">
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2">
-            <span className="inline-block w-8 h-8 rounded-full bg-primary" />
-            <span className="font-display text-2xl tracking-wide">HOTSPOT</span>
+            <img src={logo.url} alt="Hotspot — Simply Breathtaking" className="h-12 w-auto" />
           </a>
           <nav className="hidden md:flex gap-8 text-sm font-medium">
             <a href="#menu" className="hover:text-primary transition">Menu</a>
