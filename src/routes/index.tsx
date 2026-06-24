@@ -179,3 +179,130 @@ function Index() {
     </div>
   );
 }
+
+type MenuItem = {
+  img: string;
+  name: string;
+  desc: string;
+  price: string;
+  category: "Starters" | "Mains" | "Sides" | "Drinks";
+};
+
+const MENU_ITEMS: MenuItem[] = [
+  { img: sub1.url, name: "Chicken Strips", desc: "Crispy buttermilk chicken strips with house dipping sauce.", price: "N$ 55", category: "Starters" },
+  { img: sub2.url, name: "Loaded Nachos", desc: "Corn chips, cheese sauce, jalapeños, salsa & sour cream.", price: "N$ 65", category: "Starters" },
+  { img: kota1.url, name: "Wings Basket (6)", desc: "Saucy chicken wings — BBQ, peri-peri or lemon-pepper.", price: "N$ 60", category: "Starters" },
+
+  { img: burger1.url, name: "Signature Burger", desc: "Juicy patty, smoked bacon, two sauces, sesame bun.", price: "N$ 75", category: "Mains" },
+  { img: stack.url, name: "Double Stack", desc: "Double beef, bacon, crispy chips & cheese sauce.", price: "N$ 110", category: "Mains" },
+  { img: hero.url, name: "Garlic Bomb Burger", desc: "Garlic-butter bun, patty, salsa & pink sauce drip.", price: "N$ 85", category: "Mains" },
+  { img: kota1.url, name: "Hotspot Kota", desc: "Crusty roll loaded with russian, slaw, cheese & sauce.", price: "N$ 65", category: "Mains" },
+  { img: sub1.url, name: "Loaded Sub", desc: "Long roll piled with meats, slaw & shredded cheese.", price: "N$ 95", category: "Mains" },
+  { img: sub2.url, name: "Bacon & Egg Sub", desc: "Crispy bacon, fried egg, chips & double-sauce drizzle.", price: "N$ 90", category: "Mains" },
+
+  { img: stack.url, name: "Slap Chips", desc: "Golden hand-cut chips with Hotspot salt.", price: "N$ 35", category: "Sides" },
+  { img: stack.url, name: "Cheesy Chips", desc: "Chips smothered in melted cheese sauce.", price: "N$ 50", category: "Sides" },
+  { img: duo.url, name: "Onion Rings", desc: "Crispy battered onion rings, served hot.", price: "N$ 40", category: "Sides" },
+  { img: subs.url, name: "Coleslaw", desc: "Fresh creamy slaw, the perfect cool side.", price: "N$ 25", category: "Sides" },
+
+  { img: hero.url, name: "Coke / Fanta / Sprite", desc: "Ice-cold 330ml can.", price: "N$ 18", category: "Drinks" },
+  { img: hero.url, name: "Bottled Water", desc: "Still 500ml.", price: "N$ 15", category: "Drinks" },
+  { img: hero.url, name: "Iced Tea", desc: "Peach or lemon, 330ml.", price: "N$ 20", category: "Drinks" },
+  { img: hero.url, name: "Milkshake", desc: "Chocolate, vanilla or strawberry — thick & creamy.", price: "N$ 45", category: "Drinks" },
+];
+
+const CATEGORIES = ["All", "Starters", "Mains", "Sides", "Drinks"] as const;
+
+function MenuSection() {
+  const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("All");
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return MENU_ITEMS.filter((i) => {
+      const inCat = category === "All" || i.category === category;
+      const inQuery = !q || i.name.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q);
+      return inCat && inQuery;
+    });
+  }, [category, query]);
+
+  return (
+    <section id="menu" className="bg-foreground text-background py-20">
+      <div className="max-w-7xl mx-auto px-5">
+        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+          <div>
+            <div className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Our Menu</div>
+            <h2 className="font-display text-5xl md:text-6xl uppercase">Made to be devoured</h2>
+          </div>
+          <p className="max-w-sm text-background/70">Every order is built fresh — toasted buns, signature sauces, generous fillings. No shortcuts.</p>
+        </div>
+
+        {/* Search + Filters */}
+        <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between mb-8">
+          <div className="flex flex-wrap gap-2">
+            {CATEGORIES.map((c) => {
+              const active = c === category;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => setCategory(c)}
+                  className={`px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide transition border ${
+                    active
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-transparent text-background/80 border-background/20 hover:border-accent hover:text-accent"
+                  }`}
+                >
+                  {c}
+                </button>
+              );
+            })}
+          </div>
+          <div className="relative md:w-72">
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search the menu…"
+              aria-label="Search menu"
+              className="w-full bg-background/10 border border-background/20 rounded-full px-5 py-2.5 text-sm text-background placeholder:text-background/50 focus:outline-none focus:border-accent"
+            />
+          </div>
+        </div>
+
+        {filtered.length === 0 ? (
+          <div className="text-center py-16 text-background/60">
+            No items match "{query}". Try a different search or category.
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6">
+            {filtered.map((item) => (
+              <article key={item.name} className="group bg-background text-foreground rounded-2xl overflow-hidden hover:-translate-y-1 transition shadow-lg">
+                <div className="aspect-[4/3] overflow-hidden relative">
+                  <img src={item.img} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                  <span className="absolute top-3 left-3 bg-foreground/80 text-background text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">
+                    {item.category}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3 className="font-display text-2xl uppercase">{item.name}</h3>
+                    <span className="font-display text-xl text-primary">{item.price}</span>
+                  </div>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-10 text-center">
+          <a href={`tel:${PHONE}`} className="inline-block bg-accent text-accent-foreground px-8 py-4 rounded-full font-semibold hover:scale-105 transition">
+            Call to order — {PHONE_DISPLAY}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
