@@ -171,8 +171,11 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="bg-foreground text-background/70 py-8">
-        <div className="max-w-7xl mx-auto px-5 flex flex-wrap justify-between gap-4 text-sm">
-          <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
+        <div className="max-w-7xl mx-auto px-5 flex flex-wrap items-center justify-between gap-4 text-sm">
+          <div className="flex items-center gap-3">
+            <img src={logo.url} alt="Hotspot" className="h-12 w-auto bg-background/95 rounded-lg p-1" />
+            <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
+          </div>
           <div>Hadyn Street, Windhoek West · {PHONE_DISPLAY}</div>
         </div>
       </footer>
