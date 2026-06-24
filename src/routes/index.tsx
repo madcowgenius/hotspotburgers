@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
 import hero from "@/assets/hero.asset.json";
 import burger1 from "@/assets/burger1.asset.json";
 import stack from "@/assets/stack.asset.json";
