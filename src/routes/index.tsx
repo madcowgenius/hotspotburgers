@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import hero from "@/assets/hero.asset.json";
+import logo from "@/assets/hotspot-logo.asset.json";
 import burger1 from "@/assets/burger1.asset.json";
 import stack from "@/assets/stack.asset.json";
 import kota1 from "@/assets/kota1.asset.json";
@@ -34,8 +35,7 @@ function Index() {
       <header className="sticky top-0 z-50 backdrop-blur bg-background/80 border-b border-border">
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2">
-            <span className="inline-block w-8 h-8 rounded-full bg-primary" />
-            <span className="font-display text-2xl tracking-wide">HOTSPOT</span>
+            <img src={logo.url} alt="Hotspot — Simply Breathtaking" className="h-12 w-auto" />
           </a>
           <nav className="hidden md:flex gap-8 text-sm font-medium">
             <a href="#menu" className="hover:text-primary transition">Menu</a>
@@ -171,8 +171,11 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="bg-foreground text-background/70 py-8">
-        <div className="max-w-7xl mx-auto px-5 flex flex-wrap justify-between gap-4 text-sm">
-          <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
+        <div className="max-w-7xl mx-auto px-5 flex flex-wrap items-center justify-between gap-4 text-sm">
+          <div className="flex items-center gap-3">
+            <img src={logo.url} alt="Hotspot" className="h-12 w-auto bg-background/95 rounded-lg p-1" />
+            <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
+          </div>
           <div>Hadyn Street, Windhoek West · {PHONE_DISPLAY}</div>
         </div>
       </footer>
