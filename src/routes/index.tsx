@@ -37,8 +37,9 @@ function Index() {
       {/* NAV */}
       <header className="sticky top-0 z-50 backdrop-blur bg-background/80 border-b border-border">
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2 transition hover:opacity-80">
+          <a href="#top" className="flex items-center gap-3 transition hover:opacity-80">
             <img src={logoImg} alt="Hotspot Logo" className="h-12 w-auto object-contain" />
+            <span className="font-display text-2xl text-foreground tracking-widest uppercase mt-1">Hotspot Burgers</span>
           </a>
           <nav className="hidden md:flex gap-8 text-sm font-medium">
             <a href="#menu" className="hover:text-primary transition">Menu</a>
