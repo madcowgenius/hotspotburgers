@@ -11,6 +11,7 @@ import imgFuture from "@/assets/The Future(Left).jpeg";
 import imgFreshieHotspot from "@/assets/The Freshie (Left) and Hotspot (Right).jpeg";
 import imgStefanio from "@/assets/The Stefanio's Burger.jpeg";
 import imgStenio from "@/assets/The Stenio`s Burger.jpeg";
+import logoImg from "@/assets/hotspot_logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,8 +37,8 @@ function Index() {
       {/* NAV */}
       <header className="sticky top-0 z-50 backdrop-blur bg-background/80 border-b border-border">
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="font-display text-2xl text-primary tracking-widest uppercase">Hotspot</span>
+          <a href="#top" className="flex items-center gap-2 transition hover:opacity-80">
+            <img src={logoImg} alt="Hotspot Logo" className="h-12 w-auto object-contain" />
           </a>
           <nav className="hidden md:flex gap-8 text-sm font-medium">
             <a href="#menu" className="hover:text-primary transition">Menu</a>
@@ -81,9 +82,9 @@ function Index() {
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-6 bg-primary/20 rounded-[2.5rem] blur-3xl" />
-            <img src={imgBoss} alt="The Boss — Hotspot signature loaded burger" className="relative rounded-3xl shadow-2xl w-full object-cover aspect-square" />
-            <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl rotate-[-4deg]">
+            <div className="absolute -inset-6 bg-primary/40 rounded-[2.5rem] blur-3xl transition-opacity duration-1000" />
+            <img src={imgBoss} alt="The Boss — Hotspot signature loaded burger" className="relative rounded-3xl shadow-2xl w-full object-cover aspect-square animate-float" />
+            <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl rotate-[-4deg] animate-float" style={{ animationDelay: '1s' }}>
               <div className="font-display text-2xl">★ ★ ★ ★ ★</div>
               <div className="text-xs text-muted-foreground">"Best burger in Windhoek"</div>
             </div>
@@ -173,7 +174,10 @@ function Index() {
       {/* FOOTER */}
       <footer className="bg-foreground text-background/70 py-8">
         <div className="max-w-7xl mx-auto px-5 flex flex-wrap items-center justify-between gap-4 text-sm">
-          <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
+          <div className="flex items-center gap-3">
+            <img src={logoImg} alt="Hotspot Logo" className="h-10 w-auto object-contain bg-background/95 p-1 rounded-lg" />
+            <div className="font-display text-background text-xl hidden sm:block">HOTSPOT TAKEAWAY & CATERING</div>
+          </div>
           <div>Hadyn Street, Windhoek West · {PHONE_DISPLAY}</div>
         </div>
       </footer>
@@ -335,9 +339,12 @@ function MenuSection() {
         ) : (
           <div className="grid md:grid-cols-3 gap-6">
             {filtered.map((item) => (
-              <article key={item.name} className="group bg-background text-foreground rounded-2xl overflow-hidden hover:-translate-y-1 transition shadow-lg">
-                <div className="aspect-[4/3] overflow-hidden relative">
-                  <img src={item.img} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+              <article key={item.name} className="group bg-background text-foreground rounded-2xl overflow-hidden hover:-translate-y-2 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-primary/40 border border-transparent hover:border-primary/50 relative">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10" />
+                <div className="aspect-[4/3] overflow-hidden relative bg-muted/20 p-2">
+                  <div className="w-full h-full rounded-xl overflow-hidden">
+                    <img src={item.img} alt={item.name} loading="lazy" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  </div>
                   <span className="absolute top-3 left-3 bg-foreground/80 text-background text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full">
                     {item.category}
                   </span>

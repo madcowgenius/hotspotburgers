@@ -47,23 +47,23 @@
   --popover: oklch(0.99 0.01 80);
   --popover-foreground: oklch(0.18 0.03 35);
 
-  --primary: oklch(0.55 0.21 28);        /* deep tomato red */
+  --primary: oklch(0.62 0.25 28);        /* punchier tomato red */
   --primary-foreground: oklch(0.98 0.01 80);
   --secondary: oklch(0.92 0.04 75);
   --secondary-foreground: oklch(0.18 0.03 35);
   --muted: oklch(0.93 0.02 75);
   --muted-foreground: oklch(0.45 0.03 40);
-  --accent: oklch(0.78 0.17 65);          /* mustard/amber */
+  --accent: oklch(0.85 0.20 85);          /* vibrant cheese yellow */
   --accent-foreground: oklch(0.18 0.03 35);
   --destructive: oklch(0.55 0.22 28);
   --destructive-foreground: oklch(0.98 0.01 80);
   --border: oklch(0.85 0.03 70);
   --input: oklch(0.88 0.03 70);
-  --ring: oklch(0.55 0.21 28);
+  --ring: var(--primary);
 
   --cream: oklch(0.97 0.02 75);
-  --ember: oklch(0.62 0.22 35);
-  --mustard: oklch(0.82 0.17 80);
+  --ember: oklch(0.62 0.25 28);
+  --mustard: oklch(0.85 0.20 85);
 }
 
 @layer base {
@@ -73,8 +73,19 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     background-image:
-      radial-gradient(circle at 10% 0%, color-mix(in oklab, var(--primary) 8%, transparent), transparent 40%),
-      radial-gradient(circle at 90% 100%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 45%);
+      radial-gradient(circle at 10% 0%, color-mix(in oklab, var(--primary) 15%, transparent), transparent 40%),
+      radial-gradient(circle at 90% 100%, color-mix(in oklab, var(--accent) 15%, transparent), transparent 45%);
   }
   h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0.01em; }
+}
+
+@layer utilities {
+  @keyframes float {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
 }
