@@ -1,14 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import hero from "@/assets/hero.asset.json";
-import logo from "@/assets/hotspot-logo.asset.json";
-import burger1 from "@/assets/burger1.asset.json";
-import stack from "@/assets/stack.asset.json";
-import kota1 from "@/assets/kota1.asset.json";
-import sub1 from "@/assets/sub1.asset.json";
-import sub2 from "@/assets/sub2.asset.json";
-import subs from "@/assets/subs.asset.json";
-import duo from "@/assets/duo.asset.json";
+
+// Real burger images from assets
+import imgPresent from "@/assets/The Present.jpeg";
+import imgBoss from "@/assets/The Boss.jpeg";
+import imgOne from "@/assets/The One.jpeg";
+import imgYesterday from "@/assets/The Yesterday.jpeg";
+import imgCombo from "@/assets/The Combo.jpeg";
+import imgFuture from "@/assets/The Future(Left).jpeg";
+import imgFreshieHotspot from "@/assets/The Freshie (Left) and Hotspot (Right).jpeg";
+import imgStefanio from "@/assets/The Stefanio's Burger.jpeg";
+import imgStenio from "@/assets/The Stenio`s Burger.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -17,8 +19,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Loaded burgers, kotas, gourmet subs and full-service catering in Windhoek. Call +264 81 365 2649." },
       { property: "og:title", content: "Hotspot Takeaway & Catering — Windhoek West" },
       { property: "og:description", content: "Loaded burgers, kotas, gourmet subs and full-service catering in Windhoek." },
-      { property: "og:image", content: hero.url },
-      { name: "twitter:image", content: hero.url },
+      { property: "og:image", content: imgBoss },
+      { name: "twitter:image", content: imgBoss },
     ],
   }),
   component: Index,
@@ -35,7 +37,7 @@ function Index() {
       <header className="sticky top-0 z-50 backdrop-blur bg-background/80 border-b border-border">
         <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2">
-            <img src={logo.url} alt="Hotspot — Simply Breathtaking" className="h-12 w-auto" />
+            <span className="font-display text-2xl text-primary tracking-widest uppercase">Hotspot</span>
           </a>
           <nav className="hidden md:flex gap-8 text-sm font-medium">
             <a href="#menu" className="hover:text-primary transition">Menu</a>
@@ -62,7 +64,7 @@ function Index() {
               Unforgettable.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-md">
-              Hotspot serves the boldest burgers, kotas and gourmet subs in Windhoek — plus full-service catering for events that need to taste as good as they look.
+              Hotspot serves the boldest burgers in Windhoek — built fresh to order with signature sauces, generous fillings and big honest flavour. Plus full-service catering for every occasion.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href={WHATSAPP} target="_blank" rel="noreferrer" className="bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:scale-[1.02] transition shadow-lg shadow-primary/30">
@@ -80,7 +82,7 @@ function Index() {
           </div>
           <div className="relative">
             <div className="absolute -inset-6 bg-primary/20 rounded-[2.5rem] blur-3xl" />
-            <img src={hero.url} alt="Hotspot signature loaded burger" className="relative rounded-3xl shadow-2xl w-full object-cover aspect-square" />
+            <img src={imgBoss} alt="The Boss — Hotspot signature loaded burger" className="relative rounded-3xl shadow-2xl w-full object-cover aspect-square" />
             <div className="absolute -bottom-6 -left-6 bg-card border border-border rounded-2xl px-5 py-3 shadow-xl rotate-[-4deg]">
               <div className="font-display text-2xl">★ ★ ★ ★ ★</div>
               <div className="text-xs text-muted-foreground">"Best burger in Windhoek"</div>
@@ -92,14 +94,13 @@ function Index() {
       {/* MENU */}
       <MenuSection />
 
-
       {/* CATERING */}
       <section id="catering" className="py-24">
         <div className="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
           <div className="grid grid-cols-2 gap-4">
-            <img src={duo.url} alt="Burger pair" className="rounded-2xl aspect-square object-cover col-span-2" />
-            <img src={subs.url} alt="Sub platter" className="rounded-2xl aspect-square object-cover" />
-            <img src={kota1.url} alt="Kota" className="rounded-2xl aspect-square object-cover" />
+            <img src={imgCombo} alt="The Combo" className="rounded-2xl aspect-square object-cover col-span-2" />
+            <img src={imgFreshieHotspot} alt="The Freshie and Hotspot Burger" className="rounded-2xl aspect-square object-cover" />
+            <img src={imgFuture} alt="The Future burgers" className="rounded-2xl aspect-square object-cover" />
           </div>
           <div>
             <div className="text-primary font-semibold uppercase tracking-widest text-sm mb-2">Catering</div>
@@ -172,10 +173,7 @@ function Index() {
       {/* FOOTER */}
       <footer className="bg-foreground text-background/70 py-8">
         <div className="max-w-7xl mx-auto px-5 flex flex-wrap items-center justify-between gap-4 text-sm">
-          <div className="flex items-center gap-3">
-            <img src={logo.url} alt="Hotspot" className="h-12 w-auto bg-background/95 rounded-lg p-1" />
-            <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
-          </div>
+          <div className="font-display text-background text-xl">HOTSPOT TAKEAWAY & CATERING</div>
           <div>Hadyn Street, Windhoek West · {PHONE_DISPLAY}</div>
         </div>
       </footer>
@@ -188,33 +186,90 @@ type MenuItem = {
   name: string;
   desc: string;
   price: string;
-  category: "Starters" | "Mains" | "Sides" | "Drinks";
+  category: "Burgers" | "Combos";
 };
 
 const MENU_ITEMS: MenuItem[] = [
-  { img: sub1.url, name: "Chicken Strips", desc: "Crispy buttermilk chicken strips with house dipping sauce.", price: "N$ 55", category: "Starters" },
-  { img: sub2.url, name: "Loaded Nachos", desc: "Corn chips, cheese sauce, jalapeños, salsa & sour cream.", price: "N$ 65", category: "Starters" },
-  { img: kota1.url, name: "Wings Basket (6)", desc: "Saucy chicken wings — BBQ, peri-peri or lemon-pepper.", price: "N$ 60", category: "Starters" },
-
-  { img: burger1.url, name: "Signature Burger", desc: "Juicy patty, smoked bacon, two sauces, sesame bun.", price: "N$ 75", category: "Mains" },
-  { img: stack.url, name: "Double Stack", desc: "Double beef, bacon, crispy chips & cheese sauce.", price: "N$ 110", category: "Mains" },
-  { img: hero.url, name: "Garlic Bomb Burger", desc: "Garlic-butter bun, patty, salsa & pink sauce drip.", price: "N$ 85", category: "Mains" },
-  { img: kota1.url, name: "Hotspot Kota", desc: "Crusty roll loaded with russian, slaw, cheese & sauce.", price: "N$ 65", category: "Mains" },
-  { img: sub1.url, name: "Loaded Sub", desc: "Long roll piled with meats, slaw & shredded cheese.", price: "N$ 95", category: "Mains" },
-  { img: sub2.url, name: "Bacon & Egg Sub", desc: "Crispy bacon, fried egg, chips & double-sauce drizzle.", price: "N$ 90", category: "Mains" },
-
-  { img: stack.url, name: "Slap Chips", desc: "Golden hand-cut chips with Hotspot salt.", price: "N$ 35", category: "Sides" },
-  { img: stack.url, name: "Cheesy Chips", desc: "Chips smothered in melted cheese sauce.", price: "N$ 50", category: "Sides" },
-  { img: duo.url, name: "Onion Rings", desc: "Crispy battered onion rings, served hot.", price: "N$ 40", category: "Sides" },
-  { img: subs.url, name: "Coleslaw", desc: "Fresh creamy slaw, the perfect cool side.", price: "N$ 25", category: "Sides" },
-
-  { img: hero.url, name: "Coke / Fanta / Sprite", desc: "Ice-cold 330ml can.", price: "N$ 18", category: "Drinks" },
-  { img: hero.url, name: "Bottled Water", desc: "Still 500ml.", price: "N$ 15", category: "Drinks" },
-  { img: hero.url, name: "Iced Tea", desc: "Peach or lemon, 330ml.", price: "N$ 20", category: "Drinks" },
-  { img: hero.url, name: "Milkshake", desc: "Chocolate, vanilla or strawberry — thick & creamy.", price: "N$ 45", category: "Drinks" },
+  {
+    img: imgPresent,
+    name: "The Present",
+    desc: "Diced Russians, Polony, Fancy Lettuce & Cheese.",
+    price: "N$ 30",
+    category: "Burgers",
+  },
+  {
+    img: imgBoss,
+    name: "The Boss",
+    desc: "Chips, Meat Patty, Diced Russians, Fancy Lettuce, Polony and an Egg.",
+    price: "N$ 55",
+    category: "Burgers",
+  },
+  {
+    img: imgOne,
+    name: "The One",
+    desc: "Diced Russians, Chips, Fancy Lettuce & Cheese.",
+    price: "N$ 35",
+    category: "Burgers",
+  },
+  {
+    img: imgYesterday,
+    name: "The Yesterday",
+    desc: "Diced Russians, Meats, Chips & Egg.",
+    price: "N$ 38",
+    category: "Burgers",
+  },
+  {
+    img: imgFreshieHotspot,
+    name: "The Freshie",
+    desc: "Diced Russians, Meat Patty, Fancy Lettuce & Cheese.",
+    price: "N$ 35",
+    category: "Burgers",
+  },
+  {
+    img: imgFreshieHotspot,
+    name: "HotSpot Burger",
+    desc: "Chips, Meat Patty, Diced Russians & Cheese.",
+    price: "N$ 40",
+    category: "Burgers",
+  },
+  {
+    img: imgFuture,
+    name: "The Double or Nothing",
+    desc: "Chips, 2x Meat Patties and an Egg.",
+    price: "N$ 50",
+    category: "Burgers",
+  },
+  {
+    img: imgFuture,
+    name: "The Boss Double",
+    desc: "Chips, 2x Meat Patty, an Egg, Fancy Lettuce & Cheese.",
+    price: "N$ 70",
+    category: "Burgers",
+  },
+  {
+    img: imgStefanio,
+    name: "The Stefanio's Burger",
+    desc: "Chips, Meat Patty, Chicken Strip & Cheese.",
+    price: "N$ 35",
+    category: "Burgers",
+  },
+  {
+    img: imgStenio,
+    name: "The Stenio's Burger",
+    desc: "Diced Russians, Meat Patty, Chips.",
+    price: "N$ 30",
+    category: "Burgers",
+  },
+  {
+    img: imgCombo,
+    name: "The Combo",
+    desc: "The Yesterday and The One — two legendary burgers in one deal.",
+    price: "N$ 60",
+    category: "Combos",
+  },
 ];
 
-const CATEGORIES = ["All", "Starters", "Mains", "Sides", "Drinks"] as const;
+const CATEGORIES = ["All", "Burgers", "Combos"] as const;
 
 function MenuSection() {
   const [category, setCategory] = useState<(typeof CATEGORIES)[number]>("All");
@@ -308,4 +363,3 @@ function MenuSection() {
     </section>
   );
 }
-
